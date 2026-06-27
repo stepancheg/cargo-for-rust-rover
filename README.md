@@ -2,11 +2,13 @@
 
 ## Problem
 
-RustRover likes to type-check the whole workspace at once
+RustRover indexes the whole workspace at once
 (`cargo check --workspace`, and the same pattern for `build` /
-`clippy`). In a big monorepo that also builds native code, that is
-painfully slow when you only need a few crates. Tracked in the
-JetBrains issue tracker as [RUST-19682][RUST-19682].
+`clippy`). That evaluates every package's build scripts, prepares
+macro expansion, and builds the IDE index. In a big monorepo that
+also compiles native code in build scripts, it is painfully slow
+when you only need a few crates. Tracked in the JetBrains issue
+tracker as [RUST-19682][RUST-19682].
 
 ## Solution
 

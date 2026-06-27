@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+crate_dir="$(dirname "$script_dir")"
+# Preserve how we were invoked (e.g. cargo / rustc symlinks); `cargo run` sets
+# the binary path as argv0, so pass the wrapper path via the environment.
+# Basename is taken in Rust.
+export CARGO_FOR_RUST_ROVER_ARGV0="$0"
+# Use the real cargo/rustc for bootstrapping this binary. If RUSTC (or PATH)
+# points at this wrapper, `cargo run` would recurse forever and never reach main.
+real_cargo="${HOME}/.cargo/bin/cargo"
+real_rustc="${HOME}/.cargo/bin/rustc"
+exec env RUSTC="$real_rustc" "$real_cargo" run --quiet --release \
+  --manifest-path "$crate_dir/Cargo.toml" -- "$@"

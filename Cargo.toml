@@ -1,0 +1,17 @@
+[package]
+name = "cargo-for-rust-rover"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "cargo-for-rust-rover"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+cargo_metadata = "0.23"
+jiff = "0.2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+shlex = "2"
+toml = "0.8"

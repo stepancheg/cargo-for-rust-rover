@@ -3,12 +3,11 @@
 ## Problem
 
 RustRover indexes the whole workspace at once
-(`cargo check --workspace`, and the same pattern for `build` /
-`clippy`). That evaluates every package's build scripts, prepares
-macro expansion, and builds the IDE index. In a big monorepo that
-also compiles native code in build scripts, it is painfully slow
-when you only need a few crates. Tracked in the JetBrains issue
-tracker as [RUST-19682][RUST-19682].
+(`cargo check --workspace`). That evaluates every package's build
+scripts, prepares macro expansion, and builds the IDE index. In a
+big monorepo that also compiles native code in build scripts, it is
+painfully slow when you only need a few crates. Tracked in the
+JetBrains issue tracker as [RUST-19682][RUST-19682].
 
 ## Solution
 
@@ -30,7 +29,7 @@ package_prefixes = ["my-app", "my-lib"]
 ```
 
 Only packages whose names start with one of those prefixes get
-`-p` on workspace-wide `check` / `build` / `clippy`.
+`-p` on workspace-wide `cargo check`.
 
 ## Related
 

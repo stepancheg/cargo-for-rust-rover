@@ -11,10 +11,10 @@ JetBrains issue tracker as [RUST-19682][RUST-19682].
 
 ## Solution
 
-A `cargo` / `rustc` wrapper. On workspace-wide commands it strips
-`--workspace`, limits the run to packages matching configured name
-prefixes with `-p`, and hands off to the real tools in
-`~/.cargo/bin/`. Activity is written to
+A `cargo` / `rustc` / `rustfmt` wrapper. On workspace-wide commands
+it strips `--workspace`, limits the run to packages matching
+configured name prefixes with `-p`, and hands off to the real tools
+in `~/.cargo/bin/`. Activity is written to
 `~/.cargo-for-rust-rover.log`.
 
 ## Configuration
